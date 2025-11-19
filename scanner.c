@@ -1,4 +1,6 @@
 #include "scanner.h"
+#include <dirent.h>
+#include <sys/stat.h>
 
 uint8_t eicar_signature[EICAR_SIZE] = {
     0x58,0x35,0x4F,0x21,0x50,0x25,0x40,0x41,
@@ -153,5 +155,39 @@ void run_rules_test(const char* filename) {
     }
 }
 
-
+void scan_directory(const char* path) {
+    DIR* d = opendir(path);
+    if(!d) {
+        return;
+        printf("Não foi possivel abrir diretorio: %s\n", path);
+    }
+    
+    struct dirent* entry;
+    while((entry = readdir(d)) != NULL){
+        if(strcmp(entry->d_name, ".")==0 || strcmp(entry->d_name, "..")==0) {
+            continue;
+        }
+        
+        char fullpath[1024];
+        snprintf(fullpath, sizeof(fullpath), "%s/%s", path, entry->d_name);
+        
+        struct stat st;
+        if(stat(fullpath, &st) == -1) {
+            continue;
+        }
+        if(S_ISDIR(st.st_mode)){
+            printf(GREEN "Entrando em: %s\n" RESET, fullpath);
+            scan_directory(fullpath);
+        } else {
+            printf("Testando arquivo: %s\n", fullpath);
+            int result = scan_file_rules(fullpath);
+            if(result>0){
+                printf(RED "Ameacas detactadas: %d\n\n" RESET, result);
+            } else {
+                printf(GREEN "Arquivo limpo.\n" RESET);
+            }
+        }
+    }
+    closedir(d);
+}
 

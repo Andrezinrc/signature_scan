@@ -30,6 +30,7 @@ int load_signatures(const char* rules_file);
 int scan_file_rules(const char* filename);
 void create_test_file();
 void run_rules_test(const char* filename);
+void scan_directory(const char* path);
 
 #endif
 

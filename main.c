@@ -9,18 +9,29 @@ int main(int argc, char *argv[]) {
         return 1;
     }
     
-    create_test_file();
-    
     if (strcmp(argv[1], "rules")==0) {
+        create_test_file();
+    
         if (argc==3) {
             run_rules_test(argv[2]);
         } else {
             run_rules_test(NULL);
         }
+        return 0;
+    }
+    if(strcmp(argv[1], "--scan-dir")==0) {
+        if(argc<3){
+            printf("Erro: faltou o diretorio.\n");
+            printf("Uso: %s --scan-dir <path>\n", argv[0]);
+            return 1;
+        }
+        run_rules_test(NULL);
+        scan_directory(argv[2]);
+        return 0;
     }
     
-    return 0;
+    printf("Erro: comando desconhecido '%s'\n", argv[1]);
+    return 1;
 }
-
 
 
