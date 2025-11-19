@@ -29,6 +29,12 @@ Testa todos os padrões:
 ./scanner rules arquivo_suspeito.exe
 ```
 
+## Escaneamento Recursivo
+
+```bash
+./scanner --scan-dir /caminho/do/diretorio
+```
+
 ## Sistema de Regras
 
 Edite rules.txt para adicionar suas próprias assinaturas:
