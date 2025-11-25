@@ -30,15 +30,34 @@ typedef struct {
 extern signature_t signatures[MAX_SIGNATURES];
 extern int signature_count;
 
-int load_signatures(const char* rules_file);
-int scan_file_rules(const char* filename);
-void create_test_file();
-void run_rules_test(const char* filename);
-void show_scan_summary(void);
-int should_ignore_dir(const char* path);
-int should_scan_file(const char* path);
-void scan_directory(const char* path);
-
+#ifdef __cplusplus
+extern "C" {
 #endif
 
+// Carrega regras do arquivo rules.txt
+int load_signatures(const char* rules_file);
 
+// Scaneia um arquivo com as regras carregadas
+int scan_file_rules(const char* filename);
+
+// Cria arquivo de teste EICAR
+void create_test_file(void);
+
+// Faz um teste completo de regras
+void run_rules_test(const char* filename);
+
+// Exibe sumário de varredura
+void show_scan_summary(void);
+
+// Filtros auxiliares
+int should_ignore_dir(const char* path);
+int should_scan_file(const char* path);
+
+// Varredura recursiva de diretórios
+void scan_directory(const char* path);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif

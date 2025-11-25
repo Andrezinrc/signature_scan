@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>ADR Antivírus</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        <label>Selecione um arquivo:</label><br><br>
+        <input type="file" name="file" required>
+        <br><br>
+        <button type="submit">Verificar</button>
+    </form>
+
+    {% if result %}
+        <h2>Resultado:</h2>
+        <p>{{ result }}</p>
+    {% endif %}
+</body>
+</html>
