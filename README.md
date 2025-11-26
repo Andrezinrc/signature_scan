@@ -1,31 +1,46 @@
 # signature_scan
 
-O objetivo é apenas aprendizado sobre antivírus, assinaturas e análise de bytes em C.
+# ⚠️ AVISO LEGAL
 
-Compilar
+Este projeto é **exclusivamente educacional**.  
+Foi desenvolvido para estudo de antivírus, assinaturas, leitura de bytes e análise simples em C.
+
+Não é um antivírus real e **não deve ser usado** para proteção de sistemas, detecção profissional de malware ou qualquer uso crítico.
+
+O autor **não se responsabiliza** por:
+- Alarmes falsos ou ausência de detecção
+- Perda de arquivos
+- Uso inadequado do software
+- Consequências do uso incorreto
+
+Use **por sua própria conta e risco**.
+
+---
+
+Projeto para aprendizado sobre antivírus, análise de bytes e sistemas de assinatura em C.
+
+## Compilar
 
 ```bash
 gcc scanner.c -o scanner
 ```
+Como Usar
 
-## Como Usar
-
-Teste Automático
+## Teste Automático
 
 ```bash
 ./scanner rules
 ```
 
-Testa todos os padrões:
-
-  ·EICAR (assinatura hardcoded)
-  ·SIMPLE_MALWARE (DE AD BE EF)
-  ·SUSPICIOUS_PATTERN (90 90 90 E8)
-  ·Arquivos limpos
+Executa todos os testes incluídos:
+	•	EICAR (assinatura hardcoded)
+	•	SIMPLE_MALWARE (DE AD BE EF)
+	•	SUSPICIOUS_PATTERN (90 90 90 E8)
+	•	Arquivos limpos
 
 ## Escaneamento Específico
 
-```bash
+```
 ./scanner rules arquivo_suspeito.exe
 ```
 
@@ -35,30 +50,18 @@ Testa todos os padrões:
 ./scanner --scan-dir /caminho/do/diretorio
 ```
 
-## Sistema de Regras
+Sistema de Regras
 
-Edite rules.txt para adicionar suas próprias assinaturas:
+## Edite rules.txt:
 
-```bash
-# Formato: NOME=HEX_HEX_HEX
+Formato: NOME=HEX_HEX_HEX
 MINHA_REGRA=AA BB CC DD
 OUTRA_REGRA=90 90 90 E8 ?? ?? FF
-```
 
 Arquivos de Teste Incluídos
-
-  · eicar_test.txt - Assinatura EICAR padrão
-  · malware_test.bin - Padrão DE AD BE EF
-  · shellcode_test.bin - NOP sled + CALL
-  · clean_file.txt - Arquivo limpo para teste
-
-## Aviso Legal
-
-Projeto estritamente educacional. Desenvolvido para aprendizado em:
-
- · Cybersecurity e análise de malware
- · Sistemas de detecção por assinatura
-
-O programa cria arquivos de teste, escaneia e mostra se detectou ameaças corretamente.
+	•	eicar_test.txt
+	•	malware_test.bin
+	•	shellcode_test.bin
+	•	clean_file.txt
 
 ---
