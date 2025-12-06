@@ -117,9 +117,6 @@ int scan_file_rules(const char* filename) {
 
                 if (memcmp(&buffer[i], signatures[sig_idx].pattern, pat_len)==0) {
 
-                    printf(RED "Ameaca detectada! Regra: %s | Arquivo: %s\n" RESET,
-                           signatures[sig_idx].name, filename);
-
                     rule_detected[sig_idx]=1;
                     threats_found++;
                     break;
