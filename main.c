@@ -18,6 +18,8 @@ void show_scan_summary() {
 
 int main(int argc, char *argv[]) {
     if (argc<2) {
+        printf("\033[2J\033[H");
+        printf("\033[36mScanner de Regras (educacional)\033[0m\n");
         printf("Uso: %s <comando> [argumentos]\n", argv[0]);
         printf("Comandos:\n");
         printf("  rules                    # Teste todos arquivos de teste\n");

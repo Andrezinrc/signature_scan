@@ -5,7 +5,7 @@ O objetivo é apenas aprendizado sobre antivírus, assinaturas e análise de byt
 Compilar
 
 ```bash
-gcc scanner.c -o scanner
+gcc main.c scanner.c -o scanner
 ```
 
 ## Como Usar
@@ -20,7 +20,6 @@ Testa todos os padrões:
 
   ·EICAR (assinatura hardcoded)
   ·SIMPLE_MALWARE (DE AD BE EF)
-  ·SUSPICIOUS_PATTERN (90 90 90 E8)
   ·Arquivos limpos
 
 ## Escaneamento Específico
