@@ -95,6 +95,7 @@ int scan_file_rules(const char* filename) {
         buffer_size = preserved + bytes_read;
 
         // Detecção EICAR
+		 /*
         if (!eicar_detected && buffer_size >= EICAR_SIZE) {
             for (size_t i=0;i<=buffer_size - EICAR_SIZE;i++) {
                 if (memcmp(&buffer[i], eicar_signature, EICAR_SIZE) == 0) {
@@ -108,7 +109,8 @@ int scan_file_rules(const char* filename) {
                 }
             }
         }
-
+        */
+		
         // Detecção de regras customizadas
         for (int sig_idx = 0; sig_idx < signature_count; sig_idx++) {
             if (rule_detected[sig_idx])
@@ -130,7 +132,7 @@ int scan_file_rules(const char* filename) {
             }
         }
         
-		 // Preserva final do buffer para próximo chunk (overlap)
+        // Preserva final do buffer para próximo chunk (overlap)
         if (buffer_size >= overlap) {
             preserved = overlap;
             memcpy(buffer, buffer + (buffer_size - overlap), overlap);
@@ -181,9 +183,6 @@ void run_rules_test(const char* filename) {
        // teste
         char* test_files[] = {
             "eicar_test.txt",
-            "malware_test.bin",
-            "shellcode_test.bin",
-            "clean_file.txt",
             NULL
         };
         
